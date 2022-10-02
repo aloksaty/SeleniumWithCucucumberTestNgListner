@@ -23,7 +23,6 @@
  */
 
 package com.alok.aut.factory;
-import com.alok.exceptions.HeadlessNotSupportedException;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.config.DriverManagerType;
 import org.openqa.selenium.WebDriver;
@@ -37,9 +36,6 @@ import org.openqa.selenium.remote.AbstractDriverOptions;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
 
-import static com.alok.config.ConfigurationManager.configuration;
-import static com.alok.data.changeless.BrowserData.*;
-import static java.lang.Boolean.TRUE;
 
 public enum BrowserFactory {
 
@@ -54,10 +50,7 @@ public enum BrowserFactory {
         @Override
         public ChromeOptions getOptions() {
             ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.addArguments(START_MAXIMIZED);
-            chromeOptions.addArguments(DISABLE_INFOBARS);
-            chromeOptions.addArguments(DISABLE_NOTIFICATIONS);
-            chromeOptions.setHeadless(configuration().headless());
+            chromeOptions.addArguments("--start-maximized");
 
             return chromeOptions;
         }
@@ -72,8 +65,7 @@ public enum BrowserFactory {
         @Override
         public FirefoxOptions getOptions() {
             FirefoxOptions firefoxOptions = new FirefoxOptions();
-            firefoxOptions.addArguments(START_MAXIMIZED);
-            firefoxOptions.setHeadless(configuration().headless());
+            firefoxOptions.addArguments("--start-maximized");
 
             return firefoxOptions;
         }
@@ -88,9 +80,7 @@ public enum BrowserFactory {
         @Override
         public EdgeOptions getOptions() {
             EdgeOptions edgeOptions = new EdgeOptions();
-            edgeOptions.addArguments(START_MAXIMIZED);
-            edgeOptions.setHeadless(configuration().headless());
-
+            edgeOptions.addArguments("--start-maximized");
             return edgeOptions;
         }
     }, SAFARI {
@@ -105,10 +95,6 @@ public enum BrowserFactory {
         public SafariOptions getOptions() {
             SafariOptions safariOptions = new SafariOptions();
             safariOptions.setAutomaticInspection(false);
-
-            if (TRUE.equals(configuration().headless()))
-                throw new HeadlessNotSupportedException(safariOptions.getBrowserName());
-
             return safariOptions;
         }
     };

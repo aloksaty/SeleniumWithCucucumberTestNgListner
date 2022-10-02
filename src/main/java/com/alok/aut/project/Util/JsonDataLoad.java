@@ -13,6 +13,7 @@ public class JsonDataLoad {
     static List<JSONObject> jsonObjectList = new LinkedList<> ();
     static HashMap<Object,List<JSONObject>> objectMap = new HashMap<> ();
     public static HashMap<Object,List<JSONObject>> LoadData (String file){
+        file="src/main/resources/DataSet/Customer.json";
         JSONObject customerObj = null;
         try {
             customerObj = (JSONObject) new JSONParser ().parse

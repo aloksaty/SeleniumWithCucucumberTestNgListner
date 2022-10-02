@@ -1,69 +1,53 @@
 package runner;
-
 import Base.ExtentReportUtil;
+import Base.GetScreenShot;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
 import com.aventstack.extentreports.gherkin.model.Feature;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import java.io.IOException;
-
-import static Base.BaseUtil.features;
-
+import static Base.BaseUtil.scenarioDef;
 /**
  * Created by Karthik on 21/09/2019.
  */
-
 public class NGTestListener implements ITestListener {
-
-    ExtentReportUtil extentReportUtil = new ExtentReportUtil();
-
-    @Override
-    public void onTestStart(ITestResult iTestResult) {
-        System.out.println("On test start");
+    private static String getTestMethodName(ITestResult iTestResult) {
+        return iTestResult.getMethod().getConstructorOrMethod().getName();
     }
-
     @Override
-    public void onTestSuccess(ITestResult iTestResult) {
+    public void onTestStart (ITestResult iTestResult) {
 
-        System.out.println("**********On Scenario Success*********");
-    }
-
-    @Override
-    public void onTestFailure(ITestResult iTestResult) {
-        System.out.println("On test failure");
-
-//        try{
-//            extentReportUtil.ExtentReportScreenshot();
-//        }catch (IOException e){
-//            e.printStackTrace();
-//        }
-    }
-
-    @Override
-    public void onTestSkipped(ITestResult iTestResult) {
-        System.out.println("On test skipped");
-    }
-
-    @Override
-    public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-        System.out.println("On test percentage");
-    }
-
-    @Override
-    public void onStart(ITestContext iTestContext) {
-        System.out.println("On start");
-
-        extentReportUtil.ExtentReport();
-
-        //ToDo: Feature - Hard coding the feature name
-        features = extentReportUtil.extent.createTest(Feature.class, "LoginFeature");
+        System.out.println ("********Test Start From TestNg Listeners ################");
 
     }
-
     @Override
-    public void onFinish(ITestContext iTestContext) {
-        System.out.println("On finish");
-        extentReportUtil.FlushReport();
+    public void onTestSuccess (ITestResult iTestResult) {
+        System.out.println ("############Test Pass From TestNg Listeners ################");
+    }
+    @Override
+    public void onTestFailure (ITestResult iTestResult) {
+        iTestResult.setStatus (2);
+        System.out.println ("**************** Taking screenshot in TestNg Listeners*****");
+    }
+    @Override
+    public void onTestSkipped (ITestResult iTestResult) {
+        System.out.println ("On test skipped");
+    }
+    @Override
+    public void onTestFailedButWithinSuccessPercentage (ITestResult iTestResult) {
+        System.out.println ("On test percentage");
+    }
+    @Override
+    public void onStart (ITestContext iTestContext) {
+        System.out.println ("^^^^^^ Test Context ^^^^^^^^");
+
+
+    }
+    @Override
+    public void onFinish (ITestContext iTestContext) {
+        System.out.println ("On finish");
     }
 }

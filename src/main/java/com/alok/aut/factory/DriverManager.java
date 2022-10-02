@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.alok.driver;
+package com.alok.aut.factory;
 
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;

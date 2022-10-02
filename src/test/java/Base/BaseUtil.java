@@ -10,14 +10,14 @@ import org.openqa.selenium.WebDriver;
 
 public class BaseUtil {
 
-    public static WebDriver Driver;
+    public static WebDriver driver;
 
     public ExtentReports extent;
 
     public static ExtentTest scenarioDef;
 
-    public static ExtentTest features;
+    public static ExtentTest test;
 
-    public static String reportLocation = "D:\\SeleniumWithCucucumber-master\\";
+    public static String reportLocation = "";
 
 }

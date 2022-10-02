@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
-public class MapUI {
+public class Config {
 
 	public static Properties prob;
 	public static String BestExec = null;
@@ -18,20 +18,17 @@ public class MapUI {
     public static String FromMailId = null;
     public static String ToMailId = null;
     public static String SubjectLine = null;
-
     public  static  String jsonDataFile = null;
     public static String target=null;
     public static String gridUrl=null;
     public static String girdPort=null;
-
     //--------------JDBC---------------------
     public static String JDBCIP;
     public static String JDBCUserName;
     public static String JDBCPasword;
 
-    public MapUI () {
+    public Config () {
         String prop_path = "src/main/resources/config.properties";
-        System.out.println (prop_path);
         File file = new File (prop_path);
         FileInputStream fin = null;
         try {
@@ -57,6 +54,7 @@ public class MapUI {
         girdPort=prob.getProperty ("girdPort");
     }
     public static void userInfoLoad () throws Exception {
+
         BestExecFile = System.getProperty ("user.dir") + "\\DataFile\\" + BestExec;
     }
 

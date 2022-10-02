@@ -22,25 +22,21 @@
  * SOFTWARE.
  */
 
-package com.alok.driver;
+package com.alok.aut.factory;
 
-import com.alok.exceptions.TargetNotValidException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.alok.aut.project.Util.Log;
+import com.alok.aut.project.Util.Config;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.URL;
 
-import static com.alok.config.ConfigurationManager.configuration;
 
 public class TargetFactory {
 
-    private static final Logger logger = LogManager.getLogger(TargetFactory.class);
-
     public WebDriver createInstance(String browser) {
-        Target target = Target.valueOf(configuration().target().toUpperCase());
+        Target target = Target.valueOf (Config.target.toUpperCase ());
         WebDriver webdriver;
 
         switch (target) {
@@ -51,7 +47,7 @@ public class TargetFactory {
                 webdriver = createRemoteInstance(BrowserFactory.valueOf(browser.toUpperCase()).getOptions());
                 break;
             default:
-                throw new TargetNotValidException(target.toString());
+                throw new RuntimeException ("Target %s not supported. Use either local or gird"+target.toString());
         }
         return webdriver;
     }
@@ -59,14 +55,14 @@ public class TargetFactory {
     private RemoteWebDriver createRemoteInstance(MutableCapabilities capability) {
         RemoteWebDriver remoteWebDriver = null;
         try {
-            String gridURL = String.format("http://%s:%s", configuration().gridUrl(), configuration().gridPort());
+            String gridURL = String.format("http://%s:%s", Config.gridUrl, Config.girdPort);
 
             remoteWebDriver = new RemoteWebDriver(new URL(gridURL), capability);
         } catch (java.net.MalformedURLException e) {
-            logger.error("Grid URL is invalid or Grid is not available");
-            logger.error(String.format("Browser: %s", capability.getBrowserName()), e);
+            Log.error("Grid URL is invalid or Grid is not available");
+            Log.error(String.format("Browser: %s", capability.getBrowserName())+" "+ e);
         } catch (IllegalArgumentException e) {
-            logger.error(String.format("Browser %s is not valid or recognized", capability.getBrowserName()), e);
+            Log.error(String.format("Browser %s is not valid or recognized", capability.getBrowserName())+" "+ e);
         }
 
         return remoteWebDriver;
@@ -75,4 +71,5 @@ public class TargetFactory {
     enum Target {
         LOCAL, REMOTE
     }
+
 }
