@@ -1,0 +1,15 @@
+.settings/
+grid/assets
+
+# Intellij
+.idea/
+*.iml
+
+# Maven
+logs/
+target/
+test-output/
+test output/
+extent-reports/
+# Allure
+.allure
