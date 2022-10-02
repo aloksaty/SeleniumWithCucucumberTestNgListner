@@ -1,40 +1,35 @@
-# SeleniumWithCucumber
-This is an sample project to demonstrate how to work with Selenium and cucumber for Java
+# Test Automation Architecture using Java,TestNg,Cucumber and Selenium WebDriver
 
-[![Java CI with Maven](https://github.com/executeautomation/SeleniumWithCucucumber/actions/workflows/maven_new.yml/badge.svg?branch=master)](https://github.com/executeautomation/SeleniumWithCucucumber/actions/workflows/maven_new.yml)
+##    Languages and Frameworks
+This project using the following languages and frameworks:
 
-~~~~
-# Important
-Make sure you have JAVA 10 or above installed to run this test
-~~~~
+- Java 8 as the programming language
+- Maven for bulid management tool
+- TestNG as the UnitTest framework to support the test creation
+- Cucumber testNg for BDD implementation.
+- Selenium WebDriver as the web browser automation framework using the Java binding
+- Extended Report as the testing report strategy
+- Log4J2 as the logging management strategy
+- WebDriverManager as the Selenium binaries management
+- Owner to minimize the code to handle the properties file
+- Json data ,CSV ,DB Manager,Excel manager are created for data management.
 
-# Access Cucumber Report online
-Access Cucumber Report from GitHub pages running via GitHub Actions from here https://executeautomation.github.io/SeleniumWithCucucumber/cucumber-report-html/cucumber-html-reports/report-feature_file-src-test-java-features-Login-feature.html
+# Test architecture
+
+We know that any automation project starting with a good test architecture.
+This project can be your initial test architecture for a faster start.
+You will see the following items in this architecture:
+
+* [Page Objects pattern](#page-objects-pattern)
+* [Execution types](#execution-types)
+* [BaseTest](#basetest)
+* [TestListener](#testlistener)
+* [Logging](#logging)
+* [Configuration files](#configuration-files)
+* [Parallel execution](#parallel-execution)
+* Cucumber/TestNg For BDD
 
 
-# Upgraded to Cucumber 4
-The code is now upgraded to Cucumber 4 with new
 
-# Upgraded to Cucumber-JVM 5
-The code is now upgraded to Cucumber 4 with new
-
-1. Libraries support
-2. Test Runner support
-3. Hooks (@BeforeStep and @AfterStep)
-4. DataTable code change
-
-## More Information
-The complete code base development video is available in ExecuteAutomation YouTube channel 
-https://www.youtube.com/playlist?list=PL6tu16kXT9Pqr70SZlwcmTSAfOw_0Qj3R
-
-
-## Cucumber BDD video Series (YouTube)
-https://www.youtube.com/playlist?list=PL6tu16kXT9PpteusHGISu_lHcV6MbBtA6
-
-## Cucumber BDD video Series (Udemy)
-https://www.udemy.com/cucumber-with-selenium/
-
-### For more articles and videos
-Visit http://www.executeautomation.com
 
 
