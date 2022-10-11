@@ -5,8 +5,8 @@ import com.alok.aut.project.Util.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.locators.RelativeLocator;
 import org.testng.Assert;
+
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -19,6 +19,7 @@ import java.time.format.DateTimeFormatter;
  *
  */
 public class FundamentalsPO {
+    public static final String BASE_URL = "https://chercher.tech";
     public String inputTextValue;
     WebDriver driver;
     WebElement inputText;
@@ -33,7 +34,7 @@ public class FundamentalsPO {
                 "https://bonigarcia.dev/selenium-webdriver-java/web-form.html");
     }
     public void testBaseURL () {
-        System.out.println (driver.getTitle ());
+        Log.info (driver.getTitle ());
     }
     public void getInputTextArea(){
         inputText = driver.findElement (By.xpath (LoadObject.inputText));
@@ -108,4 +109,5 @@ public class FundamentalsPO {
 
         datePicker = driver.findElement(By.name("my-date"));
     }
+
 }
